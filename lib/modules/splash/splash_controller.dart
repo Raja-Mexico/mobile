@@ -14,10 +14,10 @@ class SplashController extends GetxController {
     //   await Future.delayed(const Duration(seconds: 1));
     // }
 
-    if (_storage.read('token') != null) {
-      Get.offAllNamed(AppRoutes.home);
+    if (_storage.read('token') == null) {
+      Get.offNamed(AppRoutes.auth);
+    } else {
+      Get.offNamed(AppRoutes.home);
     }
-
-    Get.offNamed(AppRoutes.auth);
   }
 }

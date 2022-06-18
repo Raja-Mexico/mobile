@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:raja_mexico_app/models/_models.dart';
 
 class ApiProvider extends GetConnect {
   final _storage = GetStorage();
@@ -54,5 +55,46 @@ class ApiProvider extends GetConnect {
     }
 
     return false;
+  }
+
+  // TODO: Implement
+  Future<User> getUserBalanceDetails() async {
+    // var response = await get('user/balance');
+
+    await Future.delayed(const Duration(seconds: 2));
+
+    return User(
+      balance: 100000,
+      name: 'Hendra',
+      virtualAccountCode: 'CMRN190682',
+    );
+  }
+
+  // TODO: Implement
+  Future<ExpenseSummary> getUserExpenses() async {
+    // var response = await get('brick/transaction');
+
+    // if (response.body['error'] != null) {
+    //   return ExpenseSummary();
+    // }
+
+    // return ExpenseSummary.fromJson(response.body);
+
+    return ExpenseSummary(
+      topExpenses: [
+        Expense(
+          categoryGroup: 'Cafe',
+          total: 700,
+        ),
+        Expense(
+          categoryGroup: 'Comida',
+          total: 500,
+        ),
+        Expense(
+          categoryGroup: 'Ropa',
+          total: 300,
+        ),
+      ],
+    );
   }
 }

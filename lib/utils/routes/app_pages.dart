@@ -2,7 +2,6 @@ import 'package:raja_mexico_app/modules/authentication/_authentication.dart';
 import 'package:raja_mexico_app/modules/home/_home.dart';
 import 'package:get/get.dart';
 import 'package:raja_mexico_app/modules/splash/_splash.dart';
-import 'package:raja_mexico_app/modules/splash/views/splash_view.dart';
 
 part 'app_routes.dart';
 
@@ -32,7 +31,8 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.home,
-      page: () => const HomeView(),
+      page: () => HomeView(),
+      binding: HomeBinding(),
     ),
   ];
 }

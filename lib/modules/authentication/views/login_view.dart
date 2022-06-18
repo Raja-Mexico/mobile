@@ -18,10 +18,11 @@ class LoginView extends StatelessWidget {
         child: Container(
           color: AppColor.background,
           padding: EdgeInsets.only(
-              top: 32 + MediaQuery.of(context).viewPadding.top,
-              bottom: 32,
-              left: 48,
-              right: 48),
+            top: 32 + MediaQuery.of(context).viewPadding.top,
+            bottom: 32,
+            left: 48,
+            right: 48,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
