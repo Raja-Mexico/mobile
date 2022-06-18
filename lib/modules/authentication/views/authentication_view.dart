@@ -10,17 +10,19 @@ class AuthenticationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CustomElevatedButton(
-          onPressed: () => _authController.navToSignIn(),
-          text: 'Sign In',
-        ),
-        CustomElevatedButton(
-          onPressed: () => _authController.navToSignIn(),
-          text: 'Sign Up',
-        ),
-      ],
+    return Scaffold(
+      body: Column(
+        children: [
+          CustomElevatedButton(
+            onPressed: () => _authController.navToSignIn(),
+            text: 'Sign In',
+          ),
+          CustomElevatedButton(
+            onPressed: () => _authController.navToSignUp(),
+            text: 'Sign Up',
+          ),
+        ],
+      ),
     );
   }
 }

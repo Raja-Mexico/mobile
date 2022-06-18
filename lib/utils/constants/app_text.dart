@@ -2,6 +2,7 @@ class AppText {
   static const appName = 'Cemara';
   static const tagLine = 'Aplikasi Terbaik Manajemen Keuangan Keluarga';
 
+  static const nameFormMessage = 'Nama';
   static const emailFormMessage = 'E-mail';
   static const passwordFormMessage = 'Kata Sandi';
 

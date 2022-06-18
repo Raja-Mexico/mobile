@@ -2,16 +2,17 @@ import 'package:raja_mexico_app/modules/authentication/_authentication.dart';
 import 'package:raja_mexico_app/modules/home/_home.dart';
 import 'package:get/get.dart';
 import 'package:raja_mexico_app/modules/splash/_splash.dart';
+import 'package:raja_mexico_app/modules/splash/views/splash_view.dart';
 
 part 'app_routes.dart';
 
-class AppViews {
+class AppPages {
   static const initial = AppRoutes.splash;
 
   static final routes = [
     GetPage(
       name: AppRoutes.splash,
-      page: () => const HomeView(),
+      page: () => const SplashView(),
       binding: SplashBinding(),
     ),
     GetPage(

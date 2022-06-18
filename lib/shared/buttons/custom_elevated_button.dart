@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:raja_mexico_app/utils/constants/app_color.dart';
 
 class CustomElevatedButton extends StatelessWidget {
-  final Function onPressed;
+  final Function() onPressed;
   final String text;
 
   const CustomElevatedButton({
@@ -14,7 +14,7 @@ class CustomElevatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () => {onPressed},
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         primary: AppColor.primary,
       ),

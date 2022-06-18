@@ -7,6 +7,7 @@ class StyledText extends StatelessWidget {
   final Color color;
   final double fontSize;
   final FontWeight? fontWeight;
+  final TextAlign? textAlign;
 
   const StyledText({
     Key? key,
@@ -14,12 +15,14 @@ class StyledText extends StatelessWidget {
     required this.color,
     required this.fontSize,
     this.fontWeight,
+    this.textAlign,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: TextStyle(
         color: color,
         fontSize: fontSize,

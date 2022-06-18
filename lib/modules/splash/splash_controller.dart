@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
-// import 'package:raja_mexico_app/utils/device/sizing.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:raja_mexico_app/utils/routes/_routes.dart';
 
 class SplashController extends GetxController {
+  final _storage = GetStorage();
+
   @override
   void onReady() async {
     super.onReady();
@@ -12,6 +14,10 @@ class SplashController extends GetxController {
     //   await Future.delayed(const Duration(seconds: 1));
     // }
 
-    Get.offNamed(AppRoutes.home);
+    if (_storage.read('token') != null) {
+      Get.offAllNamed(AppRoutes.home);
+    }
+
+    Get.offNamed(AppRoutes.auth);
   }
 }
