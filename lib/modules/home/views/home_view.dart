@@ -11,6 +11,7 @@ import 'package:raja_mexico_app/shared/dialogs/custom_dialog.dart';
 import 'package:raja_mexico_app/shared/forms/_forms.dart';
 import 'package:raja_mexico_app/shared/texts/_texts.dart';
 import 'package:raja_mexico_app/utils/constants/_constants.dart';
+import 'package:raja_mexico_app/utils/helpers/_helpers.dart';
 
 class HomeView extends StatelessWidget {
   HomeView({Key? key}) : super(key: key);
@@ -50,12 +51,12 @@ class HomeView extends StatelessWidget {
                     const StyledText(
                       text: AppText.balance,
                       color: AppColor.black,
-                      fontSize: 14,
+                      fontSize: 12,
                     ),
                     StyledText(
-                      text: '$balance',
+                      text: currencyFormat(balance),
                       color: AppColor.black,
-                      fontSize: 24,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
                   ],
@@ -109,13 +110,22 @@ class HomeView extends StatelessWidget {
           fontSize: 18,
           fontWeight: FontWeight.bold,
         ),
+        const SizedBox(height: 8),
         if (isLoaded && topExpenses == null) ...[
           const StyledText(
             text: AppText.expenseSummaryMessageNone,
             color: AppColor.black2,
             fontSize: 12,
           ),
-          // TODO: Tambah
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              CustomElevatedButton(
+                onPressed: () => {_homeController.openBrick()},
+                text: AppText.addAccount,
+              ),
+            ],
+          ),
         ] else if (isLoaded && topExpenses != null) ...[
           const StyledText(
             text: AppText.expenseSummaryMessage,
@@ -158,8 +168,7 @@ class HomeView extends StatelessWidget {
                       ),
                     ),
                     CustomElevatedButton(
-                      // TODO: Buka brick
-                      onPressed: () => {},
+                      onPressed: () => {_homeController.openBrick()},
                       text: AppText.addConnectedAccount,
                     ),
                     // TODO: Navigate to expense details

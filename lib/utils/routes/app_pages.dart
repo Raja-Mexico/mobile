@@ -43,7 +43,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.family,
-      page: () => const FamilyView(),
+      page: () => FamilyView(),
       binding: FamilyBinding(),
     ),
   ];

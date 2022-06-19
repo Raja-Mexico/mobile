@@ -65,7 +65,7 @@ class PrepaidView extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const BottomBar(currentIndex: 1),
+      bottomNavigationBar: const BottomBar(currentIndex: 2),
     );
   }
 }

@@ -40,7 +40,7 @@ class BottomBar extends StatelessWidget {
               isActive: currentIndex == 0,
             ),
             BottomBarItem(
-              onPressed: () => {Get.offNamed(AppRoutes.home)},
+              onPressed: () => {Get.offNamed(AppRoutes.expense_details)},
               icon: Icons.bar_chart_outlined,
               isActive: currentIndex == 1,
             ),
@@ -54,12 +54,12 @@ class BottomBar extends StatelessWidget {
               ),
             ),
             BottomBarItem(
-              onPressed: () => {Get.offNamed(AppRoutes.home)},
+              onPressed: () => {Get.offNamed(AppRoutes.prepaid)},
               icon: Icons.note_alt_outlined,
               isActive: currentIndex == 2,
             ),
             BottomBarItem(
-              onPressed: () => {Get.offNamed(AppRoutes.home)},
+              onPressed: () => {Get.offNamed(AppRoutes.family)},
               icon: Icons.people_alt_outlined,
               isActive: currentIndex == 3,
             ),

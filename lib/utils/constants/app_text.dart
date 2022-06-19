@@ -87,6 +87,7 @@ class AppText {
   static const familyYou = ' (Kamu)';
   static const familyRequestList = 'Daftar Permintaan';
   static const familyAdmin = 'Admin';
+  static const familyMemberBalance = 'Saldo: ';
 
   // Global
   static const dueMessage = 'Jatuh tempo ';

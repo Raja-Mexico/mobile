@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:get_storage/get_storage.dart';
@@ -96,5 +98,56 @@ class ApiProvider extends GetConnect {
         ),
       ],
     );
+  }
+
+  Future<String> getBrickEndpoint() async {
+    var response = await get('brick/');
+    return response.body;
+  }
+
+  Future<void> createFamily(String name) async {}
+
+  Future<void> joinamily(String code) async {}
+
+  Future<Family> fetchFamily() async {
+    // var response = await get('team');
+    var response = jsonDecode('''
+    {
+      "family_code": "HIYAHIYA",
+      "family_balance": 150,
+      "members": [
+        {
+          "name": "radit",
+          "balance": 0,
+          "is_admin": true,
+          "is_sender": false
+        },
+        {
+          "name": "roni",
+          "balance": 100,
+          "is_admin": false,
+          "is_sender": false
+        },
+        {
+          "name": "jajang",
+          "balance": 0,
+          "is_admin": false,
+          "is_sender": false
+        },
+        {
+          "name": "jeno",
+          "balance": 50,
+          "is_admin": false,
+          "is_sender": true
+        }
+      ]
+    }
+    ''');
+
+    if (response['error'] != null) {
+      return Family();
+    }
+
+    return Family.fromJson(response);
   }
 }
