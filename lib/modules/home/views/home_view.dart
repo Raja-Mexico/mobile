@@ -6,12 +6,20 @@ import 'package:raja_mexico_app/modules/home/_home.dart';
 import 'package:raja_mexico_app/shared/bars/_bars.dart';
 import 'package:raja_mexico_app/shared/buttons/_buttons.dart';
 import 'package:raja_mexico_app/shared/cards/elevated_card.dart';
+import 'package:raja_mexico_app/shared/cards/prepaid_card.dart';
 import 'package:raja_mexico_app/shared/charts/top_expenses_chart.dart';
 import 'package:raja_mexico_app/shared/dialogs/custom_dialog.dart';
 import 'package:raja_mexico_app/shared/forms/_forms.dart';
 import 'package:raja_mexico_app/shared/texts/_texts.dart';
 import 'package:raja_mexico_app/utils/constants/_constants.dart';
 import 'package:raja_mexico_app/utils/helpers/_helpers.dart';
+
+// IconData getPrepaidIcon (status) {
+//     if (status == 1) {
+//       return Icons.electric_bolt_outlined;
+//     } 
+//     return Icons.phone_callback_outlined;
+// }
 
 class HomeView extends StatelessWidget {
   HomeView({Key? key}) : super(key: key);
@@ -195,8 +203,37 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  Widget _buildPrepaidList() {
-    return Container();
+  IconData getPrepaidIcon (status) {
+      if (status == 1) {
+        return Icons.electric_bolt_outlined;
+      } else {
+        return Icons.phone_callback_outlined;
+      }
+  }
+
+  Widget _buildPrepaidList(List<Prepaid> prepaids) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const StyledText(
+          text: AppText.prepaidListTitle,
+          color: AppColor.black,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+        SizedBox(height: 12),
+        for (var prepaid in prepaids) ...{
+          PrepaidCard(
+            icon: getPrepaidIcon(prepaid.status),
+            title: prepaid.title!, 
+            amount: prepaid.amount.toString(), 
+            dueDays: prepaid.dueDays!, 
+            status: prepaid.status!
+          ),
+          SizedBox(height: 8),
+        }
+      ]
+    );
   }
 
   // TODO: Pop up join family
@@ -234,7 +271,7 @@ class HomeView extends StatelessWidget {
     // Future.delayed(
     //     const Duration(milliseconds: 50), () => _showCreatePopUp(context));
     return Scaffold(
-      body: Container(
+      body: SingleChildScrollView(
         padding: EdgeInsets.only(
           top: 32 + MediaQuery.of(context).viewPadding.top,
           bottom: 32,
@@ -274,6 +311,17 @@ class HomeView extends StatelessWidget {
                   return _buildExpenseSummary(snapshot.data?.topExpenses, true);
                 } else {
                   return _buildExpenseSummary([], false);
+                }
+              },
+            ),
+            const SizedBox(height: 24),
+            FutureBuilder<List<Prepaid>>(
+              future: _homeController.fetchPrepaids(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return _buildPrepaidList(snapshot.data!);
+                } else {
+                  return _buildPrepaidList([]);
                 }
               },
             ),

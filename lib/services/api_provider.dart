@@ -940,7 +940,6 @@ class ApiProvider extends GetConnect {
         .toList();
   }
 
-// TODO: Change to body
   Future<List<Prepaid>> fetchPrepaids() async {
     var response = await get('prepaid/');
     return (response.body as List).map((e) => Prepaid.fromJson(e)).toList();
