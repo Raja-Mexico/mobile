@@ -956,7 +956,7 @@ class ApiProvider extends GetConnect {
         "id": 2,
         "title": "Pulsa",
         "service_id": 2,
-        "status_id": 1,
+        "status_id": 2,
         "due_in_days": 30,
         "amount": 500000
     }

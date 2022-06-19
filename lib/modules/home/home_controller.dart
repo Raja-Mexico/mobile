@@ -30,8 +30,16 @@ class HomeController extends GetxController {
     return _provider.getUserBalanceDetails();
   }
 
+  Future<User> fetch() async {
+    return _provider.getUserBalanceDetails();
+  }
+
   Future<ExpenseCategorySummary> fetchExpenses() async {
     return await _provider.getUserExpenses();
+  }
+
+  Future<List<Prepaid>> fetchPrepaids() async {
+    return await _provider.fetchPrepaids();
   }
 
   Future<void> openBrick() async {
