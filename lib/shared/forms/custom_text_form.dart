@@ -28,7 +28,7 @@ class CustomTextForm extends StatelessWidget {
           ),
         ],
       ),
-      child: TextField(
+      child: TextFormField(
         controller: controller,
         style: const TextStyle(
           color: AppColor.black,

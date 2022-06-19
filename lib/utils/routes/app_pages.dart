@@ -3,6 +3,7 @@ import 'package:raja_mexico_app/modules/expense_details/_expense_details.dart';
 import 'package:raja_mexico_app/modules/family/_family.dart';
 import 'package:raja_mexico_app/modules/home/_home.dart';
 import 'package:get/get.dart';
+import 'package:raja_mexico_app/modules/prepaid/_prepaid.dart';
 import 'package:raja_mexico_app/modules/splash/_splash.dart';
 
 part 'app_routes.dart';
@@ -37,9 +38,20 @@ class AppPages {
       binding: HomeBinding(),
     ),
     GetPage(
-      name: AppRoutes.expense_details,
-      page: () => ExpenseDetailsView(),
+      name: AppRoutes.expenseDetails,
+      page: () => const ExpenseDetailsView(),
       binding: ExpenseDetailsBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.prepaid,
+      page: () => const PrepaidView(),
+      binding: PrepaidBinding(),
+      children: [
+        GetPage(
+          name: AppRoutes.prepaidCreate,
+          page: () => const PrepaidCreateView(),
+        ),
+      ],
     ),
     GetPage(
       name: AppRoutes.family,

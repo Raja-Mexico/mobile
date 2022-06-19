@@ -3,6 +3,7 @@ import 'package:raja_mexico_app/shared/bars/bottom_bar.dart';
 import 'package:raja_mexico_app/shared/buttons/_buttons.dart';
 import 'package:raja_mexico_app/shared/texts/_texts.dart';
 import 'package:raja_mexico_app/utils/constants/_constants.dart';
+import 'package:raja_mexico_app/utils/helpers/_helpers.dart';
 
 class PrepaidView extends StatelessWidget {
   const PrepaidView({Key? key}) : super(key: key);
@@ -35,6 +36,7 @@ class PrepaidView extends StatelessWidget {
               children: [
                 Expanded(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const StyledText(
                         text: AppText.familyBalance,
@@ -43,7 +45,7 @@ class PrepaidView extends StatelessWidget {
                       ),
                       // TODO: Fetch saldo total
                       StyledText(
-                        text: '100000',
+                        text: currencyFormat(100000),
                         color: AppColor.black,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,

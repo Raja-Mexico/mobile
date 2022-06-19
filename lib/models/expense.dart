@@ -1,16 +1,42 @@
 class Expense {
+  String? spender;
+  String? desc;
+  DateTime? date;
+  String? category;
+  int? amount;
+
+  Expense({
+    this.spender,
+    this.desc,
+    this.date,
+    this.category,
+    this.amount,
+  });
+
+  factory Expense.fromJson(Map<String, dynamic> json) {
+    return Expense(
+      spender: json['spender'] as String,
+      desc: json['desc'] as String,
+      date: DateTime.parse(json['date']),
+      category: json['category'] as String,
+      amount: json['amount'] as int,
+    );
+  }
+}
+
+class ExpenseCategory {
   String? categoryGroup;
   int? total;
   double? percentage;
 
-  Expense({
+  ExpenseCategory({
     this.categoryGroup,
     this.total,
     this.percentage,
   });
 
-  factory Expense.fromJson(Map<String, dynamic> json) {
-    return Expense(
+  factory ExpenseCategory.fromJson(Map<String, dynamic> json) {
+    return ExpenseCategory(
       categoryGroup: json['name'] as String,
       total: json['total_expense'] as int,
       percentage: double.parse(json['percentage']),
@@ -18,26 +44,26 @@ class Expense {
   }
 }
 
-class ExpenseSummary {
-  List<Expense>? expenses;
-  List<Expense>? topExpenses;
+class ExpenseCategorySummary {
+  List<ExpenseCategory>? expenses;
+  List<ExpenseCategory>? topExpenses;
 
-  ExpenseSummary({
+  ExpenseCategorySummary({
     this.expenses,
     this.topExpenses,
   });
 
-  factory ExpenseSummary.fromJson(Map<String, dynamic> json) {
+  factory ExpenseCategorySummary.fromJson(Map<String, dynamic> json) {
     var expensesJson = json['expenses'] as List;
     var topExpensesJson = json['top_expenses'] as List;
 
-    List<Expense> expenses = expensesJson
-        .map((expenseJson) => Expense.fromJson(expenseJson))
+    List<ExpenseCategory> expenses = expensesJson
+        .map((expenseJson) => ExpenseCategory.fromJson(expenseJson))
         .toList();
-    List<Expense> topExpenses = topExpensesJson
-        .map((expenseJson) => Expense.fromJson(expenseJson))
+    List<ExpenseCategory> topExpenses = topExpensesJson
+        .map((expenseJson) => ExpenseCategory.fromJson(expenseJson))
         .toList();
 
-    return ExpenseSummary(expenses: expenses, topExpenses: topExpenses);
+    return ExpenseCategorySummary(expenses: expenses, topExpenses: topExpenses);
   }
 }

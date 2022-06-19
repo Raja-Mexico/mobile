@@ -40,13 +40,14 @@ class BottomBar extends StatelessWidget {
               isActive: currentIndex == 0,
             ),
             BottomBarItem(
-              onPressed: () => {Get.offNamed(AppRoutes.expense_details)},
+              onPressed: () => {Get.offNamed(AppRoutes.expenseDetails)},
               icon: Icons.bar_chart_outlined,
               isActive: currentIndex == 1,
             ),
             IconButton(
               padding: EdgeInsets.zero,
-              onPressed: () => {},
+              onPressed: () =>
+                  {Get.offNamed(AppRoutes.prepaid + AppRoutes.prepaidCreate)},
               icon: const Icon(
                 Icons.add_circle_outlined,
                 size: 48,

@@ -9,7 +9,7 @@ class ExpenseDetailsController extends GetxController {
     return _provider.getUserBalanceDetails();
   }
 
-  Future<ExpenseSummary> fetchExpenses() async {
-    return await _provider.getUserExpenses();
+  Future<List<Expense>> fetchExpenses() async {
+    return await _provider.fetchFamilyExpenses();
   }
 }

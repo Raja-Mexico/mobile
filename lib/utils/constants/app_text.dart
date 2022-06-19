@@ -53,7 +53,12 @@ class AppText {
   static const expenseDistribution = 'Distribusi';
   static const expenseDistributionMessage =
       'Distribusi pengeluaran keluarga dalam 1 tahun terakhir memiliki nilai terbesar pada';
+  static const expenseTotalTitle = 'Total pengeluaran';
+  static const expenseTotalMessage = ' keluarga sudah mencapai ';
+  static const expenseDistributionDetails = 'Lihat semua distribusi';
   static const expenseHistory = 'Riwayat';
+  static const expenseHistoryDate = 'Tanggal:';
+  static const expenseHistoryCategory = 'Kategori:';
 
   // Prepaid
   static const prepaidListTitle = 'Daftar Prabayar';
@@ -76,6 +81,9 @@ class AppText {
   static const prepaidFormDueType = 'Tipe Pembelian';
   static const prepaidFormSubmitSave = 'Simpan';
   static const prepaidFormSubmitPay = 'Bayar';
+
+  static const prepaidServiceElectricity = 'PLN';
+  static const prepaidServiceMobile = 'Pulsa';
 
   // Family
   static const familyTitle = 'Keluarga';

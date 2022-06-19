@@ -86,7 +86,7 @@ class RegisterView extends StatelessWidget {
                   GestureDetector(
                     onTap: () => {_authController.navToSignIn()},
                     child: const StyledText(
-                      text: AppText.login,
+                      text: AppText.register,
                       color: AppColor.black,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,

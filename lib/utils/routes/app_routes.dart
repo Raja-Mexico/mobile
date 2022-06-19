@@ -10,9 +10,10 @@ class AppRoutes {
 
   static const home = '/home';
 
-  static const expense_details = '/expense_details';
+  static const expenseDetails = '/expense_details';
 
   static const prepaid = '/prepaid';
+  static const prepaidCreate = '/create';
 
   static const family = '/family';
 }

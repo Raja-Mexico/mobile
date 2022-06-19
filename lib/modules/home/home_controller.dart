@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:raja_mexico_app/models/_models.dart';
 import 'package:raja_mexico_app/services/_services.dart';
+import 'package:raja_mexico_app/utils/routes/_routes.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class HomeController extends GetxController {
@@ -28,7 +30,7 @@ class HomeController extends GetxController {
     return _provider.getUserBalanceDetails();
   }
 
-  Future<ExpenseSummary> fetchExpenses() async {
+  Future<ExpenseCategorySummary> fetchExpenses() async {
     return await _provider.getUserExpenses();
   }
 
@@ -40,5 +42,10 @@ class HomeController extends GetxController {
     } catch (e) {
       throw Error();
     }
+  }
+
+  Future<void> signOut() async {
+    GetStorage().remove('token');
+    Get.offNamed(AppRoutes.auth);
   }
 }

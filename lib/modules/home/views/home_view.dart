@@ -100,7 +100,8 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  Widget _buildExpenseSummary(List<Expense>? topExpenses, bool isLoaded) {
+  Widget _buildExpenseSummary(
+      List<ExpenseCategory>? topExpenses, bool isLoaded) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -248,11 +249,16 @@ class HomeView extends StatelessWidget {
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
                   if (snapshot.hasData) {
+                    if (snapshot.data!.name == null) {
+                      _homeController.signOut();
+                      return Container();
+                    }
                     return _buildHeader(
                         snapshot.data!.name ?? '',
                         snapshot.data!.balance ?? 0,
                         snapshot.data!.virtualAccountCode ?? '?????');
                   } else {
+                    _homeController.signOut();
                     return _buildHeader('Error', 0, '?????');
                   }
                 } else {
@@ -261,7 +267,7 @@ class HomeView extends StatelessWidget {
               },
             ),
             const SizedBox(height: 24),
-            FutureBuilder<ExpenseSummary>(
+            FutureBuilder<ExpenseCategorySummary>(
               future: _homeController.fetchExpenses(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
