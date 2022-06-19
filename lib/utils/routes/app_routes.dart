@@ -14,6 +14,7 @@ class AppRoutes {
 
   static const prepaid = '/prepaid';
   static const prepaidCreate = '/create';
+  static const prepaidForm = '/form';
 
   static const family = '/family';
   static const family_join = "/join";

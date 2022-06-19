@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:raja_mexico_app/utils/constants/app_color.dart';
 
 class CustomTextForm extends StatelessWidget {
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final Icon? icon;
   final String? placeholder;
+  final bool? readOnly;
+  final String? defaultValue;
+  final TextInputType? keyboardType;
 
   const CustomTextForm({
     Key? key,
-    required this.controller,
+    this.controller,
     this.icon,
     this.placeholder,
+    this.readOnly,
+    this.defaultValue,
+    this.keyboardType,
   }) : super(key: key);
 
   @override
@@ -29,6 +35,9 @@ class CustomTextForm extends StatelessWidget {
         ],
       ),
       child: TextFormField(
+        readOnly: readOnly ?? false,
+        initialValue: defaultValue,
+        keyboardType: keyboardType,
         controller: controller,
         style: const TextStyle(
           color: AppColor.black,

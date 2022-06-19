@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:raja_mexico_app/modules/prepaid/prepaid_controller.dart';
 import 'package:raja_mexico_app/shared/bars/_bars.dart';
 import 'package:raja_mexico_app/shared/cards/_cards.dart';
 import 'package:raja_mexico_app/shared/texts/_texts.dart';
 import 'package:raja_mexico_app/utils/constants/_constants.dart';
 
 class PrepaidCreateView extends StatelessWidget {
-  const PrepaidCreateView({Key? key}) : super(key: key);
+  PrepaidCreateView({Key? key}) : super(key: key);
+
+  final _prepaidController = Get.find<PrepaidController>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +38,13 @@ class PrepaidCreateView extends StatelessWidget {
             PrepaidServiceCard(
               title: AppText.prepaidServiceElectricity,
               icon: Icons.electric_bolt_outlined,
-              onTap: () => {},
+              onTap: () => {_prepaidController.navigateToCreateForm(1)},
             ),
             const SizedBox(height: 8),
             PrepaidServiceCard(
               title: AppText.prepaidServiceMobile,
               icon: Icons.phone_callback_outlined,
-              onTap: () => {},
+              onTap: () => {_prepaidController.navigateToCreateForm(2)},
             ),
           ],
         ),

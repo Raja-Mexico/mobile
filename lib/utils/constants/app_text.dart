@@ -72,7 +72,13 @@ class AppText {
   static const prepaidFormName = 'Nama Produk';
   static const prepaidFormResponsibility = 'Nama Penanggung Jawab';
   static const prepaidFormDue = 'Tenggat Waktu';
-  static const prepaidFormDueType = 'Tipe Pembelian';
+  static const prepaidFormDuePlaceholder =
+      'Pilih tenggat waktu pembayaran produk';
+  static const prepaidFormCustomerNumber = 'No. Meter / No. Pelanggan';
+  static const prepaidFormCustomerNumberPlaceholder = 'Contoh: 112224456732';
+  static const prepaidFormAmount = 'Nominal Pembelian';
+  static const prepaidFormAmountPlaceholder =
+      'Masukkan jumlah nominal pembayaran prabayar';
   static const prepaidFormSubmitSave = 'Simpan';
   static const prepaidFormSubmitPay = 'Bayar';
 
@@ -91,11 +97,13 @@ class AppText {
   static const familyAdmin = 'Admin';
   static const familyMemberBalance = 'Saldo: ';
   static const familyServiceIsNotAlready = "Maaf fitur belum tersedia";
-  static const familyCreateAppeal = "Buat grup keluarga sehingga bisa saling membantu mengelola kebutuhan finansial keluarga";
+  static const familyCreateAppeal =
+      "Buat grup keluarga sehingga bisa saling membantu mengelola kebutuhan finansial keluarga";
   static const familyCreateFormPlacholder = "Masukkan nama keluarga";
   static const familyJoinRedirectText = "Ingin bergabung grup keluarga?";
   static const familyJoinText = "Bergabung";
-  static const familyJoinAppeal = "Masukkan kode grup keluarga kamu untuk memanfaatkan fitur";
+  static const familyJoinAppeal =
+      "Masukkan kode grup keluarga kamu untuk memanfaatkan fitur";
   static const familyJoinFormPlaceholder = "Masukkan kode keluarga";
   static const familyCreateRedirectText = "Belum ada grup keluarga?";
 
@@ -106,5 +114,7 @@ class AppText {
   static const dueStatusLate = 'Pembayaran Telat';
   static const dueStatusWait = 'Menunggu Pembayaran';
   static const dueStatusPaid = 'Telah Dibayar';
+  static const dueStatusGroup = 'Menunggu Persetujuan Pembayaran Bersama';
+  static const dueStatusWithdraw = 'Menunggu Konfirmasi Penarikan';
   static const createButton = "Buat";
 }

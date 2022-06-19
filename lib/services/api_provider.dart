@@ -942,27 +942,19 @@ class ApiProvider extends GetConnect {
 
 // TODO: Change to body
   Future<List<Prepaid>> fetchPrepaids() async {
-    var response = jsonDecode('''
-[
-    {
-        "id": 1,
-        "title": "PLN",
-        "service_id": 1,
-        "status_id": 1,
-        "due_in_days": 20,
-        "amount": 150000
-    },
-    {
-        "id": 2,
-        "title": "Pulsa",
-        "service_id": 2,
-        "status_id": 1,
-        "due_in_days": 30,
-        "amount": 500000
-    }
-]
-    ''');
-
-    return (response as List).map((e) => Prepaid.fromJson(e)).toList();
+    var response = await get('prepaid/');
+    return (response.body as List).map((e) => Prepaid.fromJson(e)).toList();
   }
+
+  Future<void> savePrepaid(
+      int serviceId, int dueDay, String customerNumber, int amount) async {
+    await post('prepaid/', {
+      'service_id': serviceId,
+      'deadline_day': dueDay,
+      'identity_number': customerNumber,
+      'amount': amount,
+    });
+  }
+
+  Future<void> payPrepaid(String code) async {}
 }

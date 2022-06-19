@@ -51,7 +51,13 @@ class AppPages {
       children: [
         GetPage(
           name: AppRoutes.prepaidCreate,
-          page: () => const PrepaidCreateView(),
+          page: () => PrepaidCreateView(),
+          binding: PrepaidBinding(),
+        ),
+        GetPage(
+          name: AppRoutes.prepaidForm,
+          page: () => PrepaidCreateFormView(),
+          binding: PrepaidBinding(),
         ),
       ],
     ),
