@@ -7,6 +7,8 @@ import 'package:raja_mexico_app/shared/bars/_bars.dart';
 import 'package:raja_mexico_app/shared/buttons/_buttons.dart';
 import 'package:raja_mexico_app/shared/cards/elevated_card.dart';
 import 'package:raja_mexico_app/shared/charts/top_expenses_chart.dart';
+import 'package:raja_mexico_app/shared/dialogs/custom_dialog.dart';
+import 'package:raja_mexico_app/shared/forms/_forms.dart';
 import 'package:raja_mexico_app/shared/texts/_texts.dart';
 import 'package:raja_mexico_app/utils/constants/_constants.dart';
 
@@ -187,8 +189,40 @@ class HomeView extends StatelessWidget {
     return Container();
   }
 
+  // TODO: Pop up join family
+  void _showCreatePopUp(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return CustomDialog(
+          child: Column(
+            children: [
+              StyledText(
+                text: AppText.createFamily,
+                color: AppColor.black,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+              StyledText(
+                text: AppText.createFamilyMessage,
+                color: AppColor.black,
+                fontSize: 14,
+              ),
+              CustomTextForm(
+                controller: _homeController.familyCreateController,
+                placeholder: AppText.createFamilyPlaceholder,
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    Future.delayed(
+        const Duration(milliseconds: 50), () => _showCreatePopUp(context));
     return Scaffold(
       body: Container(
         padding: EdgeInsets.only(
