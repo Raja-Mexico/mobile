@@ -1,6 +1,8 @@
 import 'package:raja_mexico_app/modules/authentication/_authentication.dart';
 import 'package:raja_mexico_app/modules/expense_details/_expense_details.dart';
 import 'package:raja_mexico_app/modules/family/_family.dart';
+import 'package:raja_mexico_app/modules/family/views/family_create_view.dart';
+import 'package:raja_mexico_app/modules/family/views/family_join_view.dart';
 import 'package:raja_mexico_app/modules/home/_home.dart';
 import 'package:get/get.dart';
 import 'package:raja_mexico_app/modules/prepaid/_prepaid.dart';
@@ -57,6 +59,16 @@ class AppPages {
       name: AppRoutes.family,
       page: () => FamilyView(),
       binding: FamilyBinding(),
+      children: [
+        GetPage(
+          name: AppRoutes.family_join,
+          page: () => FamilyJoinView(),
+        ),
+        GetPage(
+          name: AppRoutes.family_create,
+          page: () => FamilyCreateView(),
+        ),
+      ],
     ),
   ];
 }

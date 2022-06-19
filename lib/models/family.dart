@@ -22,11 +22,13 @@ class FamilyMember {
 }
 
 class Family {
+  String? name;
   String? code;
   int? balance;
   List<FamilyMember>? members;
 
   Family({
+    this.name,
     this.code,
     this.balance,
     this.members,
@@ -35,6 +37,7 @@ class Family {
   factory Family.fromJson(Map<String, dynamic> json) {
     var membersJson = json['members'] as List;
     return Family(
+      name: json['family_name'] as String,
       code: json['family_code'] as String,
       balance: json['family_balance'] as int,
       members: membersJson

@@ -34,17 +34,11 @@ class AppText {
   static const createFamily = 'Buat Grup\nKeluarga';
   static const createFamilyMessage =
       'Semua anggota keluarga dapat masuk bergabung untuk saling membantu mengelola kebutuhan finansial';
-  static const createFamilyButton = 'Buat';
   static const createFamilySuccess = 'Berhasil membuat grup';
-  static const createFamilyPlaceholder = 'Masukkan nama keluarga';
   static const joinFamily = 'Bergabung\ndengan Keluarga';
   static const joinFamilyMessage =
       'Masukkan kode grup keluarga kamu untuk memanfaatkan seluruh fitur-fitur pada Aplikasi Cemara';
-  static const joinFamilyButton = 'Bergabung';
   static const joinFamilySuccess = 'Berhasil bergabung ke';
-  static const joinFamilyPlaceholder = 'Masukkan kode keluarga';
-  static const haveFamilyTrue = 'Ingin bergabung grup keluarga?';
-  static const haveFamilyFalse = 'Belum ada grup keluarga?';
 
   // Expense details
   static const expenseDetailsTitle = 'Rincian Pengeluaran';
@@ -96,6 +90,14 @@ class AppText {
   static const familyRequestList = 'Daftar Permintaan';
   static const familyAdmin = 'Admin';
   static const familyMemberBalance = 'Saldo: ';
+  static const familyServiceIsNotAlready = "Maaf fitur belum tersedia";
+  static const familyCreateAppeal = "Buat grup keluarga sehingga bisa saling membantu mengelola kebutuhan finansial keluarga";
+  static const familyCreateFormPlacholder = "Masukkan nama keluarga";
+  static const familyJoinRedirectText = "Ingin bergabung grup keluarga?";
+  static const familyJoinText = "Bergabung";
+  static const familyJoinAppeal = "Masukkan kode grup keluarga kamu untuk memanfaatkan fitur";
+  static const familyJoinFormPlaceholder = "Masukkan kode keluarga";
+  static const familyCreateRedirectText = "Belum ada grup keluarga?";
 
   // Global
   static const dueMessage = 'Jatuh tempo ';
@@ -104,4 +106,5 @@ class AppText {
   static const dueStatusLate = 'Pembayaran Telat';
   static const dueStatusWait = 'Menunggu Pembayaran';
   static const dueStatusPaid = 'Telah Dibayar';
+  static const createButton = "Buat";
 }
