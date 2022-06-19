@@ -31,32 +31,10 @@ class PrepaidCreateView extends StatelessWidget {
               fontSize: 14,
             ),
             const SizedBox(height: 24),
-            GestureDetector(
+            PrepaidServiceCard(
+              title: AppText.prepaidServiceElectricity,
+              icon: Icons.electric_bolt_outlined,
               onTap: () => {},
-              child: ElevatedCard(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
-                    Icon(
-                      Icons.electric_bolt_outlined,
-                      color: AppColor.primary,
-                      size: 24,
-                    ),
-                    Expanded(
-                      child: StyledText(
-                        text: AppText.prepaidServiceElectricity,
-                        color: AppColor.black,
-                        fontSize: 18,
-                      ),
-                    ),
-                    Icon(
-                      Icons.keyboard_arrow_right_outlined,
-                      color: AppColor.black,
-                      size: 24,
-                    ),
-                  ],
-                ),
-              ),
             ),
             const SizedBox(height: 8),
             PrepaidServiceCard(
@@ -89,6 +67,7 @@ class PrepaidServiceCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: ElevatedCard(
+        padding: const EdgeInsets.all(16),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

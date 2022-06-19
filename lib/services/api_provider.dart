@@ -939,4 +939,30 @@ class ApiProvider extends GetConnect {
         .map((e) => Expense.fromJson(e))
         .toList();
   }
+
+// TODO: Change to body
+  Future<List<Prepaid>> fetchPrepaids() async {
+    var response = jsonDecode('''
+[
+    {
+        "id": 1,
+        "title": "PLN",
+        "service_id": 1,
+        "status_id": 1,
+        "due_in_days": 20,
+        "amount": 150000
+    },
+    {
+        "id": 2,
+        "title": "Pulsa",
+        "service_id": 2,
+        "status_id": 1,
+        "due_in_days": 30,
+        "amount": 500000
+    }
+]
+    ''');
+
+    return (response as List).map((e) => Prepaid.fromJson(e)).toList();
+  }
 }

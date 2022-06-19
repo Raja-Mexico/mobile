@@ -1,4 +1,5 @@
 class Prepaid {
+  int? id;
   String? title;
   int? category;
   int? status;
@@ -6,6 +7,7 @@ class Prepaid {
   int? amount;
 
   Prepaid({
+    this.id,
     this.title,
     this.category,
     this.status,
@@ -15,9 +17,10 @@ class Prepaid {
 
   factory Prepaid.fromJson(Map<String, dynamic> json) {
     return Prepaid(
+      id: json['id'] as int,
       title: json['title'] as String,
-      category: json['category'] as int,
-      status: json['status'] as int,
+      category: json['service_id'] as int,
+      status: json['status_id'] as int,
       dueDays: json['due_in_days'] as int,
       amount: json['amount'] as int,
     );
