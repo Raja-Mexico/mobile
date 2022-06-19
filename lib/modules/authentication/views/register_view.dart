@@ -71,7 +71,7 @@ class RegisterView extends StatelessWidget {
               const SizedBox(height: 24),
               CustomElevatedButton(
                 onPressed: () => {_authController.signUp()},
-                text: AppText.login,
+                text: AppText.register,
               ),
               const SizedBox(height: 8),
               Row(
@@ -86,7 +86,7 @@ class RegisterView extends StatelessWidget {
                   GestureDetector(
                     onTap: () => {_authController.navToSignIn()},
                     child: const StyledText(
-                      text: AppText.register,
+                      text: AppText.login,
                       color: AppColor.black,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
