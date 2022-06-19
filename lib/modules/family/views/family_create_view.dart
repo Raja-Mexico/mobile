@@ -19,10 +19,10 @@ class FamilyCreateView extends StatelessWidget {
         child: Container(
           color: AppColor.background,
           padding: EdgeInsets.only(
-            top: 200 + MediaQuery.of(context).viewPadding.top,
+            top: 32 + MediaQuery.of(context).viewPadding.top,
             bottom: 32,
-            left: 72,
-            right: 72,
+            left: 24,
+            right: 24,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -50,12 +50,12 @@ class FamilyCreateView extends StatelessWidget {
               ),
               const SizedBox(height: 42),
               CustomTextForm(
-                controller: _familyController.codeController,
+                controller: _familyController.nameController,
                 placeholder: AppText.familyCreateFormPlacholder,
               ),
               const SizedBox(height: 12),
               CustomElevatedButton(
-                onPressed: () => {_familyController.join()},
+                onPressed: () => {_familyController.create()},
                 text: AppText.createButton,
               ),
               const SizedBox(height: 8),

@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:raja_mexico_app/shared/cards/elevated_card.dart';
 import 'package:raja_mexico_app/shared/texts/styled_text.dart';
 import 'package:raja_mexico_app/utils/constants/_constants.dart';
+import 'package:raja_mexico_app/utils/helpers/_helpers.dart';
 
 class PrepaidCard extends StatelessWidget {
   final IconData icon;
   final String title;
-  final String amount;
+  final int amount;
   final int dueDays;
   final int status;
 
@@ -43,7 +44,7 @@ class PrepaidCard extends StatelessWidget {
               ),
               const SizedBox(width: 16),
               StyledText(
-                text: amount,
+                text: currencyFormat(amount),
                 color: AppColor.black,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -53,6 +54,7 @@ class PrepaidCard extends StatelessWidget {
           Row(
             children: [
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   RichText(
                     text: TextSpan(
@@ -93,17 +95,9 @@ class PrepaidCard extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                          text: status == 0
-                              ? AppText.dueStatusWait
-                              : (status == 1
-                                  ? AppText.dueStatusPaid
-                                  : AppText.dueStatusLate),
+                          text: parseStatus(status),
                           style: TextStyle(
-                            color: status == 0
-                                ? const Color(0xFFF0AE2D)
-                                : (status == 1
-                                    ? const Color(0xFF50DB77)
-                                    : const Color(0xFFE95050)),
+                            color: parseStatusToColor(status),
                             fontSize: 14,
                           ),
                         ),

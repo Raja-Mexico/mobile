@@ -35,6 +35,10 @@ class PrepaidController extends GetxController {
     super.onClose();
   }
 
+  void navigateToSelectProduct() {
+    Get.toNamed(AppRoutes.prepaid + AppRoutes.prepaidCreate);
+  }
+
   void navigateToCreateForm(int serviceId) {
     this.serviceId = serviceId;
     Get.toNamed(AppRoutes.prepaid + AppRoutes.prepaidForm);

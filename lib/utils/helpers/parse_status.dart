@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:raja_mexico_app/utils/constants/_constants.dart';
 
 String parseStatus(int status) {
@@ -10,8 +11,10 @@ String parseStatus(int status) {
       return AppText.dueStatusGroup;
     case 4:
       return AppText.dueStatusWithdraw;
-    default:
+    case 5:
       return AppText.dueStatusLate;
+    default:
+      return 'Semua';
   }
 }
 
@@ -25,7 +28,26 @@ int parseStatusToInt(String status) {
       return 3;
     case AppText.dueStatusWithdraw:
       return 4;
-    default:
+    case AppText.dueStatusLate:
       return 5;
+    default:
+      return 0;
+  }
+}
+
+Color parseStatusToColor(int status) {
+  switch (status) {
+    case 1:
+      return const Color(0xFFF0AE2D);
+    case 2:
+      return const Color(0xFF50DB77);
+    case 3:
+      return const Color(0xFFF0AE2D);
+    case 4:
+      return const Color(0xFF607EFC);
+    case 5:
+      return const Color(0xFFE95050);
+    default:
+      return Colors.black;
   }
 }

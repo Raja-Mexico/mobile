@@ -19,10 +19,10 @@ class FamilyJoinView extends StatelessWidget {
         child: Container(
           color: AppColor.background,
           padding: EdgeInsets.only(
-            top: 200 + MediaQuery.of(context).viewPadding.top,
+            top: 32 + MediaQuery.of(context).viewPadding.top,
             bottom: 32,
-            left: 72,
-            right: 72,
+            left: 24,
+            right: 24,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -83,7 +83,7 @@ class FamilyJoinView extends StatelessWidget {
           ),
         ),
       ),
-    bottomNavigationBar: const BottomBar(currentIndex: 3),
+      bottomNavigationBar: const BottomBar(currentIndex: 3),
     );
   }
 }

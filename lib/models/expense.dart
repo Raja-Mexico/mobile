@@ -47,10 +47,12 @@ class ExpenseCategory {
 class ExpenseCategorySummary {
   List<ExpenseCategory>? expenses;
   List<ExpenseCategory>? topExpenses;
+  List<String>? institutions;
 
   ExpenseCategorySummary({
     this.expenses,
     this.topExpenses,
+    this.institutions,
   });
 
   factory ExpenseCategorySummary.fromJson(Map<String, dynamic> json) {
@@ -64,6 +66,10 @@ class ExpenseCategorySummary {
         .map((expenseJson) => ExpenseCategory.fromJson(expenseJson))
         .toList();
 
-    return ExpenseCategorySummary(expenses: expenses, topExpenses: topExpenses);
+    return ExpenseCategorySummary(
+      expenses: expenses,
+      topExpenses: topExpenses,
+      institutions: json['institutions'] as List<String>,
+    );
   }
 }

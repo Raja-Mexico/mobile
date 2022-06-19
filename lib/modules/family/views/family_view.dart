@@ -1,8 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:raja_mexico_app/models/family.dart';
 import 'package:raja_mexico_app/modules/family/_family.dart';
-import 'package:raja_mexico_app/modules/family/views/family_join_view.dart';
 import 'package:raja_mexico_app/shared/bars/bottom_bar.dart';
 import 'package:raja_mexico_app/shared/cards/_cards.dart';
 import 'package:raja_mexico_app/shared/texts/_texts.dart';
@@ -10,15 +12,49 @@ import 'package:raja_mexico_app/utils/constants/_constants.dart';
 import 'package:raja_mexico_app/utils/helpers/currency_format.dart';
 import 'package:raja_mexico_app/utils/routes/_routes.dart';
 
-class FamilyView extends StatelessWidget {
-  FamilyView({Key? key}) : super(key: key);
+class FamilyView extends StatefulWidget {
+  const FamilyView({Key? key}) : super(key: key);
+
+  @override
+  State<FamilyView> createState() => _FamilyViewState();
+}
+
+class _FamilyViewState extends State<FamilyView> {
+  Family? family;
 
   final _familyController = Get.find<FamilyController>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _familyController.fetchFamily().then((value) {
+      if (value.name == '') {
+        Get.toNamed(AppRoutes.family + AppRoutes.family_create);
+      } else {
+        setState(() {
+          family = value;
+        });
+      }
+    });
+  }
 
   Widget _buildFamilyDetails(Family family) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        StyledText(
+          text: '${AppText.familyTitle} ${family.name ?? '...'}',
+          color: AppColor.primary,
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+        ),
+        const StyledText(
+          text: AppText.familyMessage,
+          color: AppColor.black2,
+          fontSize: 14,
+        ),
+        const SizedBox(height: 24),
         Row(
           children: [
             Expanded(
@@ -90,50 +126,20 @@ class FamilyView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const StyledText(
-                text: AppText.familyTitle,
-                color: AppColor.primary,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-              const StyledText(
-                text: AppText.familyMessage,
-                color: AppColor.black2,
-                fontSize: 14,
-              ),
-              const SizedBox(height: 24),
-              FutureBuilder<Family>(
-                future: _familyController.fetchFamily(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    if (snapshot.hasData) {
-                      if(snapshot.data!.name == "") {
-                        Future.delayed(
-                          const Duration(milliseconds: 1), 
-                          () => Get.toNamed(AppRoutes.family + AppRoutes.family_join)
-                        );
-                        return Container();
-                      }
-                      else {
-                        return _buildFamilyDetails(snapshot.data!);
-                      }
-                    } else {
-                      return _buildFamilyDetails(Family(
-                        code: '????????',
-                        balance: 0,
-                        members: [
-                          FamilyMember(
-                            name: 'Error',
-                            balance: 0,
-                          ),
-                        ],
-                      ));
-                    }
-                  } else {
-                    return _buildFamilyDetails(Family());
-                  }
-                },
-              ),
+              if (family == null) ...[
+                _buildFamilyDetails(Family(
+                  code: '????????',
+                  balance: 0,
+                  members: [
+                    FamilyMember(
+                      name: 'Error',
+                      balance: 0,
+                    ),
+                  ],
+                )),
+              ] else ...[
+                _buildFamilyDetails(family!),
+              ],
               const SizedBox(height: 24),
               const StyledText(
                 text: AppText.familyRequestList,
@@ -142,6 +148,12 @@ class FamilyView extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
               // TODO: Fetch prepaids update request
+              ElevatedButton(
+                onPressed: () {
+                  GetStorage().remove('token');
+                },
+                child: Text('Wadaw'),
+              ),
             ],
           ),
         ),

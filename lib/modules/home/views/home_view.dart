@@ -13,11 +13,12 @@ import 'package:raja_mexico_app/shared/forms/_forms.dart';
 import 'package:raja_mexico_app/shared/texts/_texts.dart';
 import 'package:raja_mexico_app/utils/constants/_constants.dart';
 import 'package:raja_mexico_app/utils/helpers/_helpers.dart';
+import 'package:raja_mexico_app/utils/routes/_routes.dart';
 
 // IconData getPrepaidIcon (status) {
 //     if (status == 1) {
 //       return Icons.electric_bolt_outlined;
-//     } 
+//     }
 //     return Icons.phone_callback_outlined;
 // }
 
@@ -108,8 +109,8 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  Widget _buildExpenseSummary(
-      List<ExpenseCategory>? topExpenses, bool isLoaded) {
+  Widget _buildExpenseSummary(List<ExpenseCategory>? topExpenses, bool isLoaded,
+      List<String>? institutions) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -146,7 +147,7 @@ class HomeView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TopExpensesChart(topExpenses: topExpenses),
-              Container(
+              SizedBox(
                 width: 160,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -158,34 +159,40 @@ class HomeView extends StatelessWidget {
                       textAlign: TextAlign.start,
                     ),
                     // TODO: Refactor and add functionality
-                    ElevatedCard(
-                      padding: const EdgeInsets.all(16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          StyledText(
-                            text: 'Gopay',
-                            color: AppColor.black,
-                            fontSize: 12,
+                    if (institutions != null) ...[
+                      for (String institution in institutions) ...[
+                        ElevatedCard(
+                          padding: const EdgeInsets.all(16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              StyledText(
+                                text: institution,
+                                color: AppColor.black,
+                                fontSize: 12,
+                              ),
+                              const Icon(
+                                Icons.delete_outlined,
+                                color: AppColor.black3,
+                                size: 14,
+                              ),
+                            ],
                           ),
-                          Icon(
-                            Icons.delete_outlined,
-                            color: AppColor.black3,
-                            size: 14,
-                          ),
-                        ],
-                      ),
-                    ),
+                        ),
+                      ],
+                    ],
                     CustomElevatedButton(
                       onPressed: () => {_homeController.openBrick()},
                       text: AppText.addConnectedAccount,
                     ),
-                    // TODO: Navigate to expense details
-                    const StyledText(
-                      text: AppText.viewExpenseDetails,
-                      color: AppColor.black3,
-                      fontSize: 12,
-                      textAlign: TextAlign.end,
+                    GestureDetector(
+                      onTap: () => {Get.offNamed(AppRoutes.expenseDetails)},
+                      child: const StyledText(
+                        text: AppText.viewExpenseDetails,
+                        color: AppColor.black3,
+                        fontSize: 12,
+                        textAlign: TextAlign.end,
+                      ),
                     ),
                   ],
                 ),
@@ -203,73 +210,37 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  IconData getPrepaidIcon (status) {
-      if (status == 1) {
-        return Icons.electric_bolt_outlined;
-      } else {
-        return Icons.phone_callback_outlined;
-      }
+  IconData getPrepaidIcon(status) {
+    if (status == 1) {
+      return Icons.electric_bolt_outlined;
+    } else {
+      return Icons.phone_callback_outlined;
+    }
   }
 
   Widget _buildPrepaidList(List<Prepaid> prepaids) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        const StyledText(
-          text: AppText.prepaidListTitle,
-          color: AppColor.black,
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),
-        SizedBox(height: 12),
-        for (var prepaid in prepaids) ...{
-          PrepaidCard(
+    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      const StyledText(
+        text: AppText.prepaidListTitle,
+        color: AppColor.black,
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+      SizedBox(height: 12),
+      for (var prepaid in prepaids) ...{
+        PrepaidCard(
             icon: getPrepaidIcon(prepaid.status),
-            title: prepaid.title!, 
-            amount: prepaid.amount.toString(), 
-            dueDays: prepaid.dueDays!, 
-            status: prepaid.status!
-          ),
-          SizedBox(height: 8),
-        }
-      ]
-    );
+            title: prepaid.title!,
+            amount: prepaid.amount!,
+            dueDays: prepaid.dueDays!,
+            status: prepaid.status!),
+        const SizedBox(height: 8),
+      }
+    ]);
   }
-
-  // TODO: Pop up join family
-  // void _showCreatePopUp(BuildContext context) {
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return CustomDialog(
-  //         child: Column(
-  //           children: [
-  //             StyledText(
-  //               text: AppText.createFamily,
-  //               color: AppColor.black,
-  //               fontSize: 18,
-  //               fontWeight: FontWeight.bold,
-  //             ),
-  //             StyledText(
-  //               text: AppText.createFamilyMessage,
-  //               color: AppColor.black,
-  //               fontSize: 14,
-  //             ),
-  //             CustomTextForm(
-  //               controller: _homeController.familyCreateController,
-  //               placeholder: AppText.familyCreateFormPlacholder,
-  //             ),
-  //           ],
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
-    // Future.delayed(
-    //     const Duration(milliseconds: 50), () => _showCreatePopUp(context));
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.only(
@@ -308,9 +279,10 @@ class HomeView extends StatelessWidget {
               future: _homeController.fetchExpenses(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
-                  return _buildExpenseSummary(snapshot.data?.topExpenses, true);
+                  return _buildExpenseSummary(snapshot.data?.topExpenses, true,
+                      snapshot.data?.institutions);
                 } else {
-                  return _buildExpenseSummary([], false);
+                  return _buildExpenseSummary([], false, null);
                 }
               },
             ),
@@ -319,7 +291,11 @@ class HomeView extends StatelessWidget {
               future: _homeController.fetchPrepaids(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
-                  return _buildPrepaidList(snapshot.data!);
+                  if (snapshot.hasData) {
+                    return _buildPrepaidList(snapshot.data!);
+                  } else {
+                    return Container();
+                  }
                 } else {
                   return _buildPrepaidList([]);
                 }

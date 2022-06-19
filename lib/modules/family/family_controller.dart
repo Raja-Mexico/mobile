@@ -26,14 +26,18 @@ class FamilyController extends GetxController {
     Get.toNamed(AppRoutes.family + AppRoutes.family_create);
   }
 
-   void navToJoin() {
+  void navToJoin() {
     nameController.clear();
     Get.toNamed(AppRoutes.family + AppRoutes.family_join);
   }
 
   Future<void> join() async {
+    await _provider.joinFamily(codeController.text);
+    Get.offNamed(AppRoutes.family);
   }
 
   Future<void> create() async {
+    await _provider.createFamily(nameController.text);
+    Get.offNamed(AppRoutes.family);
   }
 }
