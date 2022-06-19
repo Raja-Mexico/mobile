@@ -113,6 +113,7 @@ class ApiProvider extends GetConnect {
     // var response = await get('team');
     var response = jsonDecode('''
     {
+      "family_name": "",
       "family_code": "HIYAHIYA",
       "family_balance": 150,
       "members": [

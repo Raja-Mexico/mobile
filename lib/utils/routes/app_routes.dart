@@ -15,4 +15,6 @@ class AppRoutes {
   static const prepaid = '/prepaid';
 
   static const family = '/family';
+  static const family_join = "/join";
+  static const family_create = "/create";
 }

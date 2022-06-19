@@ -199,39 +199,39 @@ class HomeView extends StatelessWidget {
   }
 
   // TODO: Pop up join family
-  void _showCreatePopUp(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return CustomDialog(
-          child: Column(
-            children: [
-              StyledText(
-                text: AppText.createFamily,
-                color: AppColor.black,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-              StyledText(
-                text: AppText.createFamilyMessage,
-                color: AppColor.black,
-                fontSize: 14,
-              ),
-              CustomTextForm(
-                controller: _homeController.familyCreateController,
-                placeholder: AppText.createFamilyPlaceholder,
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
+  // void _showCreatePopUp(BuildContext context) {
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return CustomDialog(
+  //         child: Column(
+  //           children: [
+  //             StyledText(
+  //               text: AppText.createFamily,
+  //               color: AppColor.black,
+  //               fontSize: 18,
+  //               fontWeight: FontWeight.bold,
+  //             ),
+  //             StyledText(
+  //               text: AppText.createFamilyMessage,
+  //               color: AppColor.black,
+  //               fontSize: 14,
+  //             ),
+  //             CustomTextForm(
+  //               controller: _homeController.familyCreateController,
+  //               placeholder: AppText.familyCreateFormPlacholder,
+  //             ),
+  //           ],
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(
-        const Duration(milliseconds: 50), () => _showCreatePopUp(context));
+    // Future.delayed(
+    //     const Duration(milliseconds: 50), () => _showCreatePopUp(context));
     return Scaffold(
       body: Container(
         padding: EdgeInsets.only(

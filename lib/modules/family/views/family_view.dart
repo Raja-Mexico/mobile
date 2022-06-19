@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:raja_mexico_app/models/family.dart';
 import 'package:raja_mexico_app/modules/family/_family.dart';
+import 'package:raja_mexico_app/modules/family/views/family_join_view.dart';
 import 'package:raja_mexico_app/shared/bars/bottom_bar.dart';
 import 'package:raja_mexico_app/shared/cards/_cards.dart';
 import 'package:raja_mexico_app/shared/texts/_texts.dart';
 import 'package:raja_mexico_app/utils/constants/_constants.dart';
 import 'package:raja_mexico_app/utils/helpers/currency_format.dart';
+import 'package:raja_mexico_app/utils/routes/_routes.dart';
 
 class FamilyView extends StatelessWidget {
   FamilyView({Key? key}) : super(key: key);
@@ -105,7 +107,16 @@ class FamilyView extends StatelessWidget {
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasData) {
-                      return _buildFamilyDetails(snapshot.data!);
+                      if(snapshot.data!.name == "") {
+                        Future.delayed(
+                          const Duration(milliseconds: 1), 
+                          () => Get.toNamed(AppRoutes.family + AppRoutes.family_join)
+                        );
+                        return Container();
+                      }
+                      else {
+                        return _buildFamilyDetails(snapshot.data!);
+                      }
                     } else {
                       return _buildFamilyDetails(Family(
                         code: '????????',
